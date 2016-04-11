@@ -3,31 +3,30 @@
 </ion-navbar>
 
 <ion-content class="has-header">
-  <ion-card>
-
+  <ion-card *ngFor="#topic of topics">
     <ion-item>
       <ion-avatar item-left>
-        <img src="https://avatars.githubusercontent.com/u/5700428?v=3&s=120">
+        <img src="{{topic.author.avatar_url}}">
       </ion-avatar>
-      <h2>DongHongfei</h2>
-      <p>Ionichina 社区管理员招募</p>
+      <h2>{{topic.author.loginname}}</h2>
+      <!-- <p>{{topic.title}}</p> -->
     </ion-item>
 
     <ion-card-content>
-      <p>Ionichina 社区管理员招募</p>
+      <p>{{topic.title}}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button primary clear small>
           <ion-icon name='thumbs-up'></ion-icon>
-          <div>308 浏览</div>
+          <div>{{topic.visit_count}} 浏览</div>
         </button>
       </ion-col>
       <ion-col>
         <button primary clear small>
           <ion-icon name='text'></ion-icon>
-          <div>11 评论</div>
+          <div>{{topic.reply_count}} 评论</div>
         </button>
       </ion-col>
       <ion-col center text-center>
