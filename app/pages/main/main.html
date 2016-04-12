@@ -1,9 +1,12 @@
 <ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
   <ion-title>Ionichina</ion-title>
 </ion-navbar>
 
 <ion-content class="has-header">
-  <ion-card *ngFor="#topic of topics">
+  <ion-card *ngFor="#topic of topics" (click)="goTopicInfo(topic.id)">
     <ion-item>
       <ion-avatar item-left>
         <img src="{{topic.author.avatar_url}}">
@@ -19,7 +22,7 @@
     <ion-row>
       <ion-col>
         <button primary clear small>
-          <ion-icon name='thumbs-up'></ion-icon>
+          <ion-icon name='eye'></ion-icon>
           <div>{{topic.visit_count}} 浏览</div>
         </button>
       </ion-col>
@@ -37,6 +40,8 @@
     </ion-row>
 
   </ion-card>
-
+  <ion-infinite-scroll (infinite)="doInfinite($event)">
+     <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 
 </ion-content>
