@@ -6,18 +6,20 @@ import {topicService} from '../../Service/topic.service';
   providers: [topicService]
 })
 export class topicInfo {
-  id: String;
-  data: any;
+  public id: String;
+  public data: any;
   constructor(private _NavParams: NavParams,private _topicService: topicService) {
     this.id = this._NavParams.get('id');
+    this.getTopicInfo();
   }
 
   getTopicInfo() {
     this._topicService.getTopic(this.id)
       .subscribe(res => {
       this.data = res.json().data;
+      console.log(this.data);
     });
   }
-  ngOnInit() { this.getTopicInfo(); }
+  ngOnInit() { }
 
 }
