@@ -22,3 +22,20 @@
   margin-top: 4rem;
 
 }
+.topic-replies{
+  ion-card{
+    margin: 0;
+    width: auto;
+  }
+  ion-avatar{
+    min-width: 2rem;
+    min-height: 2rem;
+    img{
+      width:2rem;
+      
+    }
+  }
+}
+.topic-replies-item-content{
+  margin:1rem;
+}

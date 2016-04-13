@@ -2,8 +2,8 @@
   <ion-title>主题内容</ion-title>
 </ion-navbar>
 
-<ion-content class="has-header">
-  <div *ngIf="data" class="topic-info">
+<ion-content class="has-header" *ngIf="data">
+  <div  class="topic-info">
     <div class="topic-info-head">
       <h3>{{data.title}}</h3>
       <ion-card>
@@ -19,5 +19,40 @@
     <div [innerHTML]="data.content"  class="topic-info-content">
 
     </div>
+  </div>
+
+  <div class="topic-replies">
+    <ion-card *ngFor="#item of data.replies;#index = index">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{item.author.avatar_url}}>
+        </ion-avatar>
+        <h6>{{item.author.loginname}}</h6>
+        <h6 item-right>{{index+1}}楼</h6>
+      </ion-item>
+
+      <div [innerHTML]="item.content" class="topic-replies-item-content">
+
+      </div>
+      <ion-row>
+        <ion-col>
+          <button primary clear small>
+            <ion-icon name='thumbs-up'></ion-icon>
+            <div>{{item.ups.length}} 赞</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button primary clear small>
+            <ion-icon name='text'></ion-icon>
+            <div>回复</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            11h ago
+          </ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </div>
 </ion-content>
