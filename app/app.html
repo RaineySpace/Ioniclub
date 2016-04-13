@@ -1,0 +1,60 @@
+<ion-menu [content]="content" type="push" id="leftMenu" side="left">
+  <ion-content>
+    <div class="menu-header">
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="https://avatars.githubusercontent.com/u/10717953?v=3&s=120">
+        </ion-avatar>
+        <button clear item-right>
+          <ion-icon name="sunny"></ion-icon>
+        </button>
+        <h2>ichengweb</h2>
+        <p>积分：45</p>
+      </ion-item>
+
+
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="apps" item-left></ion-icon>
+          全部
+      </ion-item>
+      <ion-item>
+        <ion-icon name="thumbs-up" item-left></ion-icon>
+          精华
+      </ion-item>
+      <ion-item>
+        <ion-icon name="share" item-left></ion-icon>
+          分享
+      </ion-item>
+      <ion-item>
+        <ion-icon name="help-circle" item-left></ion-icon>
+          问答
+      </ion-item>
+      <ion-item class="menu-item-last">
+        <ion-icon name="briefcase" item-left></ion-icon>
+          招聘
+      </ion-item>
+      <ion-item>
+        <ion-icon name="notifications" item-left></ion-icon>
+          消息
+      </ion-item>
+      <ion-item>
+        <ion-icon name="construct" item-left></ion-icon>
+          设置
+      </ion-item>
+      <ion-item>
+        <ion-icon name="information-circle" item-left></ion-icon>
+          关于
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+
+
+
+<ion-nav [root]="rootPage" #content id="nav"></ion-nav>
