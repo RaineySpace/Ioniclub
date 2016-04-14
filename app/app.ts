@@ -4,7 +4,7 @@ import {App, Platform, IonicApp} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 
 import {main} from './pages/main/main';
-import {topicInfo} from './pages/topicInfo/topicInfo';
+import {login} from './pages/login/login';
 
 
 
@@ -25,7 +25,14 @@ export class MyApp {
       StatusBar.styleDefault();
     });
   }
-  // 
+
+  login(){
+      this.app.getComponent('leftMenu').close();
+      let nav = this.app.getComponent('nav');
+      nav.push(login);
+  }
+
+  //
   // openPage(page) {
   //   this.app.getComponent('leftMenu').close();
   //   let nav = this.app.getComponent('nav');

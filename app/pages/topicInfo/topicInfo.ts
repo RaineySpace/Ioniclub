@@ -2,11 +2,12 @@ import {Page, NavParams,Modal,NavController} from 'ionic-angular';
 
 import {topicsService} from '../../service/topics.service';
 
+import {ResourceService} from '../../service/resource.service';
 import {RyCommentComponent} from '../../component/comment/comment.component';
 
 @Page({
   templateUrl: './build/pages/topicInfo/topicInfo.html',
-  providers: [topicsService]
+  providers: [topicsService,ResourceService]
 })
 export class topicInfo {
   public id: String;

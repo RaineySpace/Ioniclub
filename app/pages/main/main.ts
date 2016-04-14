@@ -6,11 +6,12 @@ import {topicInfo} from '../topicInfo/topicInfo';
 import {RyCommentComponent} from '../../component/comment/comment.component';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
+import {ResourceService} from '../../service/resource.service';
 
 @Page({
   templateUrl: './build/pages/main/main.html',
   directives:[RyCommentComponent],
-  providers: [topicsService],
+  providers: [topicsService,ResourceService],
   pipes:[RyTimeoutPipe]
 })
 export class main {
