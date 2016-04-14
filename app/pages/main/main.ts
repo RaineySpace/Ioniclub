@@ -1,11 +1,17 @@
-import {Page, NavController} from 'ionic-angular';
-import {topicsService} from '../../Service/topics.service';
+import {Page, NavController, Modal} from 'ionic-angular';
+import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
 
+import {RyCommentComponent} from '../../component/comment/comment.component';
+
+import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
+
 @Page({
   templateUrl: './build/pages/main/main.html',
-  providers: [topicsService]
+  directives:[RyCommentComponent],
+  providers: [topicsService],
+  pipes:[RyTimeoutPipe]
 })
 export class main {
   constructor(private _topicsService: topicsService,private _nav:NavController) {
@@ -17,7 +23,7 @@ export class main {
   getTopics() {
     this._topicsService.getTopics(this.page)
       .subscribe(res => {
-      this.topics = res.json().data;
+      this.topics = res.data;
       this.page++;
     });
   }
@@ -26,7 +32,7 @@ export class main {
     this._topicsService.getTopics(this.page)
       .subscribe(res => {
       console.log(this.topics);
-      this.topics = this.topics.concat(res.json().data)
+      this.topics = this.topics.concat(res.data)
       this.page++;
       infiniteScroll.complete();
     });
@@ -41,5 +47,15 @@ export class main {
   }
 
   ngOnInit() { this.getTopics(); }
+
+  comment(){
+    //阻止事件继续向上传播
+    event.stopPropagation();
+    let contactModal = Modal.create(RyCommentComponent);
+    this._nav.present(contactModal);
+    contactModal.onDismiss(data=>{
+      console.log(data);
+    });
+  }
 
 }

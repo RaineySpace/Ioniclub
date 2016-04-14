@@ -3,7 +3,7 @@
 </ion-navbar>
 
 <ion-content class="has-header" *ngIf="data">
-  <div  class="topic-info">
+  <div class="topic-info">
     <div class="topic-info-head">
       <h3>{{data.title}}</h3>
       <ion-card>
@@ -16,8 +16,19 @@
       </ion-card>
     </div>
 
-    <div [innerHTML]="data.content"  class="topic-info-content">
+    <div [innerHTML]="data.content" class="topic-info-content">
 
+    </div>
+    <div class="">
+      <ion-item>
+        <!-- <ion-avatar item-left >
+          <img src={{data.author.avatar_url}}>
+        </ion-avatar> -->
+        <button item-right clear (click)="comment()">
+          <ion-icon name="undo"></ion-icon>
+          评论
+        </button>
+      </ion-item>
     </div>
   </div>
 
@@ -42,7 +53,7 @@
           </button>
         </ion-col>
         <ion-col>
-          <button primary clear small>
+          <button primary clear small (click)="comment()">
             <ion-icon name='text'></ion-icon>
             <div>回复</div>
           </button>

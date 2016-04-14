@@ -4,15 +4,18 @@
   </button>
   <ion-title>Ionichina</ion-title>
   <ion-buttons end>
-    <button (click)="openModal()">
+    <button>
       <ion-icon name="notifications"></ion-icon>
       <ion-badge secondary>22</ion-badge>
-      
+
     </button>
   </ion-buttons>
 </ion-navbar>
 
+
 <ion-content class="has-header">
+
+
   <ion-card *ngFor="#topic of topics" (click)="goTopicInfo(topic.id)">
     <ion-item>
       <ion-avatar item-left>
@@ -34,14 +37,15 @@
         </button>
       </ion-col>
       <ion-col>
-        <button primary clear small>
+        <button (click)="comment()" primary clear small>
           <ion-icon name='text'></ion-icon>
           <div>{{topic.reply_count}} 评论</div>
         </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          11h ago
+          <!-- 11h ago -->
+          {{topic.last_reply_at | ryTimeout}}
         </ion-note>
       </ion-col>
     </ion-row>
