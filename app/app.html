@@ -2,17 +2,29 @@
   <ion-content>
     <div class="menu-header">
 
-      <ion-item>
+      <ion-item *ngIf="user">
         <ion-avatar item-left>
-          <img src="https://avatars.githubusercontent.com/u/10717953?v=3&s=120">
+          <img [src]="user.avatar_url">
         </ion-avatar>
-        <button clear item-right>
+        <button clear item-right  >
           <ion-icon name="sunny"></ion-icon>
         </button>
-        <h2>ichengweb</h2>
-        <p>积分：45</p>
+        <h2>{{user.loginname}}</h2>
       </ion-item>
 
+      <ion-item *ngIf="!user">
+        <button outline light  item-left (click)="login()">
+          <ion-icon name="log-in"></ion-icon>
+          请点击此处登陆
+        </button>
+
+        <button clear light item-right  >
+          <ion-icon name="sunny"></ion-icon>
+        </button>
+        <!-- <h5>请点击左侧按钮登陆</h5> -->
+        <!-- <p>积分：45</p> -->
+      </ion-item>
+      <!-- (click)="login()" -->
 
     </div>
     <ion-list>

@@ -1,0 +1,59 @@
+
+<ion-navbar *navbar>
+  <ion-title>回复</ion-title>
+  <ion-buttons end>
+    <button royal (click)="submit()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-toolbar class="ry-comment-toolbar">
+  <ion-buttons start>
+    <button royal (click)="addBlock()">
+      B
+    </button>
+
+    <button royal (click)="addQuote()">
+      <ion-icon name="ios-quote"></ion-icon>
+    </button>
+
+    <button royal (click)="addList()">
+      <ion-icon name="ios-list"></ion-icon>
+    </button>
+
+    <button royal (click)="addCode()">
+      <ion-icon name="ios-code"></ion-icon>
+    </button>
+
+    <button royal (click)="addAttach()">
+      <ion-icon name="ios-attach"></ion-icon>
+    </button>
+
+    <button royal (click)="addImage()">
+      <ion-icon name="ios-image"></ion-icon>
+    </button>
+
+    <button royal (click)="preview()">
+      <ion-icon name="ios-eye"></ion-icon>
+    </button>
+
+
+  </ion-buttons>
+
+</ion-toolbar>
+<ion-content class="ry-comment">
+
+  <textarea [(ngModel)]="comment" draggable="false"></textarea>
+
+</ion-content>
+
+<!-- <ion-toolbar position="bottom">
+  <p>Ash, Misty, Brock</p>
+  <ion-buttons end>
+    <button royal>
+      Send
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar> -->
