@@ -21,7 +21,7 @@ export class login {
 
 
   //通过手动填写accesstoken登陆
-  onSubmit(accesstoken:Object){
+  onSubmit(accesstoken:any){
 
     this._userService.login(accesstoken);
   }

@@ -11,9 +11,11 @@ import * as querystring from 'querystring';
 @Injectable()
 export class ResourceService {
   headers:Headers = new Headers()
-
+  accesstoken:string;
   constructor(public http: Http) {
-    this.headers.append('Content-Type', 'application/json')
+    this.headers.append('Content-Type', 'application/json');
+    this.accesstoken = window.localStorage.getItem('accesstoken');
+
     // this.headers.append('jackblog', 'ionic2')
   }
   interceptor():RequestOptions{
@@ -28,17 +30,25 @@ export class ResourceService {
     return this.http.post(config.apiUrlRoot + '/accesstoken', JSON.stringify(data), this.interceptor());
   }
 
+  //获取话题列表
   getTopics(options: Object): Observable<any>{
     let params: RequestOptions = this.interceptor()
     params.search = new URLSearchParams(querystring.stringify(options))
     return this.http.get(config.apiUrlRoot + '/topics', params)
   }
 
+  //通过Id获取话题详情
   getTopicById(options: Object,id:String): Observable<any>{
     let params: RequestOptions = this.interceptor()
     params.search = new URLSearchParams(querystring.stringify(options))
     return this.http.get(config.apiUrlRoot + '/topic/'+id, params)
   }
 
+  //获取未读消息数量
+  getMessageCount(){
+    let params: RequestOptions = this.interceptor()
+    params.search = new URLSearchParams(querystring.stringify({accesstoken:this.accesstoken}))
+    return this.http.get(config.apiUrlRoot + '/message/count', params)
+  }
 
 }
