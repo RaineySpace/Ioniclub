@@ -15,14 +15,15 @@ export class ResourceService {
   constructor(public http: Http) {
     this.headers.append('Content-Type', 'application/json');
     this.accesstoken = window.localStorage.getItem('accesstoken');
+    // this.headers.append("Content-Type", "application/json, text/plain, */*");
 
     // this.headers.append('jackblog', 'ionic2')
   }
   interceptor():RequestOptions{
-    const opts:RequestOptions = new RequestOptions()
-    opts.headers = this.headers
+    const opts:RequestOptions = new RequestOptions();
+    opts.headers = this.headers;
 
-    return opts
+    return opts;
   }
 
   //登录请求.
@@ -49,6 +50,20 @@ export class ResourceService {
     let params: RequestOptions = this.interceptor()
     params.search = new URLSearchParams(querystring.stringify({accesstoken:this.accesstoken}))
     return this.http.get(config.apiUrlRoot + '/message/count', params)
+  }
+
+
+  // 获取消息列表
+  getMessage(){
+    let params: RequestOptions = this.interceptor()
+    params.search = new URLSearchParams(querystring.stringify({accesstoken:this.accesstoken}))
+    return this.http.get(config.apiUrlRoot + '/messages', params)
+  }
+
+  // 标记所有消息为已读
+
+  markAllMessage(){
+    return this.http.post(config.apiUrlRoot + '/message/mark_all', JSON.stringify({accesstoken:this.accesstoken}), this.interceptor());
   }
 
 }

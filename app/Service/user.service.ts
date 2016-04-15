@@ -1,8 +1,8 @@
 import { Injectable } from 'angular2/core';
 import { Response } from 'angular2/http';
-import {Page, Storage, LocalStorage,Events} from 'ionic-angular';
+import {Storage, LocalStorage,Events} from 'ionic-angular';
 import {config} from '../app.config';
-import {Subject, ReplaySubject} from 'rxjs'
+import {Subject, ReplaySubject} from 'rxjs';
 
 
 import {ResourceService} from './resource.service';
@@ -15,14 +15,9 @@ import {userModel} from '../models/user.model';
 export class userService {
   storage:any;
   userInitial:userModel = new userModel();
-  static userSubject: Subject<Object> = new ReplaySubject<Object>(1);
 
   constructor(private _rs: ResourceService,private _events: Events) {
     this.storage = new Storage(LocalStorage);
-    if (this.userInitial.accesstoken !== ''){
-      userService.userSubject.next(this.userInitial.user);
-    }
-
   }
 
   saveUserInfo(accesstoken:string,user:any): void {
@@ -35,8 +30,7 @@ export class userService {
     .map((res: Response)=>res.json())
     .subscribe((user:any) => {
       this.saveUserInfo(data.accesstoken,user);
-      userService.userSubject.next(user);
-      this._events.publish('user:login',data);
+      this._events.publish('user:login',user);
     }, (err: any) => {
       console.log(err);
     });

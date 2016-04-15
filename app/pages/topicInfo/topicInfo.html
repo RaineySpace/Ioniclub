@@ -2,8 +2,8 @@
   <ion-title>主题内容</ion-title>
 </ion-navbar>
 
-<ion-content class="has-header" *ngIf="data">
-  <div class="topic-info">
+<ion-content class="has-header">
+  <div class="topic-info" *ngIf="data">
     <div class="topic-info-head">
       <h3>{{data.title}}</h3>
       <ion-card>
@@ -16,7 +16,7 @@
       </ion-card>
     </div>
 
-    <div [innerHTML]="data.content" class="topic-info-content">
+    <div [innerHTML]="data.content" class="topic-info-content" *ngIf="data">
 
     </div>
     <div class="">
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <div class="topic-replies">
+  <div class="topic-replies" *ngIf="data">
     <ion-card *ngFor="#item of data.replies;#index = index">
       <ion-item>
         <ion-avatar item-left>

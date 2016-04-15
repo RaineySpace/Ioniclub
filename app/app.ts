@@ -27,8 +27,8 @@ export class MyApp {
     platform.ready().then(() => {
       StatusBar.styleDefault();
     });
-    userService.userSubject.subscribe((user:any)=>{this.user=user;console.log("执行");});
-
+    // userService.userSubject.subscribe((user:any)=>{this.user=user;console.log("执行");});
+    this.user = this._userService.userInitial.user;
     this.listenToLoginEvents();
   }
 
@@ -39,9 +39,12 @@ export class MyApp {
   }
 
   listenToLoginEvents() {
-    this._events.subscribe('user:login', () => {
+    this._events.subscribe('user:login', (user) => {
+      this.user = user[0];
       this.openPage(main);
     });
+
+
 
     this._events.subscribe('user:logout', () => {
       this.openPage(main)

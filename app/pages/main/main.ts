@@ -1,4 +1,4 @@
-import {Page, NavController, Modal} from 'ionic-angular';
+import {Page, NavController, Modal,Events} from 'ionic-angular';
 import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
@@ -7,19 +7,21 @@ import {RyCommentComponent} from '../../component/comment/comment.component';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 import {ResourceService} from '../../service/resource.service';
-import {messageService} from '../../service/message.service';
-
+import {messagesService} from '../../service/messages.service';
+import {messages} from '../messages/messages';
 
 
 @Page({
   templateUrl: './build/pages/main/main.html',
   directives: [RyCommentComponent],
-  providers: [topicsService, ResourceService, messageService],
+  providers: [topicsService, ResourceService, messagesService],
   pipes: [RyTimeoutPipe]
 })
 export class main {
-  constructor(private _topicsService: topicsService, private _nav: NavController, private _messageService: messageService) {
-    this.getMessageCount();
+  constructor(private _topicsService: topicsService, private _events:Events, private _nav: NavController, private _messagesService: messagesService) {
+    // this.getMessageCount();
+    this.listenToMessageEvents();
+    this._messagesService.getMessageCount();
   }
   topics: Array<any>;
   //页码
@@ -52,13 +54,17 @@ export class main {
     this._nav.push(topicInfo, { id: id });
   }
 
-  getMessageCount() {
-    // this.messageCount = 2;
-    this._messageService.getMessageCount()
-      .subscribe((messageCount:number) => {
-        this.messageCount = messageCount;
-        // console.log(messageCount);
+  //获取未读消息数量
+  listenToMessageEvents() {
+      this._events.subscribe('message:count', (messageCount) => {
+        this.messageCount = messageCount[0];
+        // console.log(this.messageCount);
       });
+  }
+
+  // 跳转消息列表页面
+  goMessages(){
+    this._nav.push(messages);
   }
 
   ngOnInit() { this.getTopics(); }

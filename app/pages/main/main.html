@@ -4,10 +4,9 @@
   </button>
   <ion-title>Ionichina</ion-title>
   <ion-buttons end>
-    <button>
+    <button (click)="goMessages()">
       <ion-icon name="notifications"></ion-icon>
       <ion-badge secondary>{{messageCount}}</ion-badge>
-
     </button>
   </ion-buttons>
 </ion-navbar>
