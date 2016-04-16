@@ -14,6 +14,7 @@ export class messages{
     has_read_messages:[],
     hasnot_read_messages:[]
   };
+  tag:string="hasnot_read_messages";
   constructor(private _nav:NavController,private _events: Events,private _messagesService:messagesService){
     this._messagesService.getMessage().subscribe(messages=>{
       this.messages = messages;

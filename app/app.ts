@@ -5,7 +5,7 @@ import {StatusBar} from 'ionic-native';
 
 import {main} from './pages/main/main';
 import {login} from './pages/login/login';
-
+import {messages} from './pages/messages/messages';
 
 import {userService} from './service/user.service';
 import {ResourceService} from './service/resource.service';
@@ -22,12 +22,12 @@ import {ResourceService} from './service/resource.service';
 // @RouteConfig(ROUTES)
 export class MyApp {
   rootPage: any = main;
+  messagesPage: any = messages;
   user:any;
   constructor(platform: Platform,private _events: Events,private app:IonicApp,private _userService:userService) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
     });
-    // userService.userSubject.subscribe((user:any)=>{this.user=user;console.log("执行");});
     this.user = this._userService.userInitial.user;
     this.listenToLoginEvents();
   }
@@ -41,21 +41,31 @@ export class MyApp {
   listenToLoginEvents() {
     this._events.subscribe('user:login', (user) => {
       this.user = user[0];
-      this.openPage(main);
+      this.setRootPage(main);
     });
 
-
-
     this._events.subscribe('user:logout', () => {
-      this.openPage(main)
+      this.setRootPage(main);
     });
   }
 
+  pushChangeTabEvent(tab){
+    this._events.publish('topics:changeTab',tab);
+    this.app.getComponent('leftMenu').close();
+  }
 
-  openPage(page:any) {
-    // this.app.getComponent('leftMenu').close();
+  setRootPage(page){
     let nav = this.app.getComponent('nav');
     nav.setRoot(page);
   }
+
+  pushNavPage(page){
+    this.app.getComponent('leftMenu').close();
+    let nav = this.app.getComponent('nav');
+    nav.push(messages);
+  }
+
+
+
 
 }

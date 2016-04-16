@@ -6,53 +6,70 @@
     </button>
   </ion-buttons>
 </ion-navbar>
-<ion-content class="has-header">
-  <h6 class="messages-tag" *ngIf="messages.hasnot_read_messages.length">未读信息：</h6>
-  <ion-card *ngFor="#message of messages.hasnot_read_messages" (click)="goTopicInfo(message.topic.id)">
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="{{message.author.avatar_url}}">
-      </ion-avatar>
-      <h2>{{message.author.loginname}}</h2>
-      <p>
-        回复了您的话题
-      </p>
-    </ion-item>
+<ion-content>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="tag">
+      <ion-segment-button value="hasnot_read_messages">
+        未读
+      </ion-segment-button>
+      <ion-segment-button value="has_read_messages">
+        已读
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <!-- <h6 class="messages-tag" *ngIf="messages.hasnot_read_messages.length">未读信息：</h6> -->
+  <div [ngSwitch]="tag">
+    <div *ngSwitchWhen="'hasnot_read_messages'">
+      <ion-card *ngFor="#message of messages.hasnot_read_messages" (click)="goTopicInfo(message.topic.id)">
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="{{message.author.avatar_url}}">
+          </ion-avatar>
+          <h2>{{message.author.loginname}}</h2>
+          <p>
+            回复了您的话题
+          </p>
+        </ion-item>
 
-    <ion-card-content>
-      <div [innerHTML]="message.reply.content">
+        <ion-card-content>
+          <div [innerHTML]="message.reply.content">
 
-      </div>
+          </div>
 
-      <div class="messages-topic-title">
-        <span>话题：</span>{{message.topic.title}}
-      </div>
+          <div class="messages-topic-title">
+            <span>话题：</span>{{message.topic.title}}
+          </div>
 
-    </ion-card-content>
+        </ion-card-content>
 
-  </ion-card>
-  <h6 class="messages-tag" *ngIf="messages.has_read_messages.length">过往信息</h6>
-  <ion-card *ngFor="#message of messages.has_read_messages" (click)="goTopicInfo(message.topic.id)">
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="{{message.author.avatar_url}}">
-      </ion-avatar>
-      <h2>{{message.author.loginname}}</h2>
-      <p>
-        回复了您的话题
-      </p>
-    </ion-item>
+      </ion-card>
+    </div>
 
-    <ion-card-content>
-      <div [innerHTML]="message.reply.content">
+    <div  *ngSwitchWhen="'has_read_messages'">
+      <ion-card *ngFor="#message of messages.has_read_messages" (click)="goTopicInfo(message.topic.id)">
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="{{message.author.avatar_url}}">
+          </ion-avatar>
+          <h2>{{message.author.loginname}}</h2>
+          <p>
+            回复了您的话题
+          </p>
+        </ion-item>
 
-      </div>
+        <ion-card-content>
+          <div [innerHTML]="message.reply.content">
 
-      <div class="messages-topic-title">
-        <span>话题：</span>{{message.topic.title}}
-      </div>
+          </div>
 
-    </ion-card-content>
+          <div class="messages-topic-title">
+            <span>话题：</span>{{message.topic.title}}
+          </div>
 
-  </ion-card>
+        </ion-card-content>
+
+      </ion-card>
+    </div>
+
+  </div>
 </ion-content>

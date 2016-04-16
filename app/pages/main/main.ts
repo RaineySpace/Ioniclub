@@ -1,9 +1,9 @@
-import {Page, NavController, Modal,Events} from 'ionic-angular';
+import {Page, NavController, Modal, Events} from 'ionic-angular';
 import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
 
-import {RyCommentComponent} from '../../component/comment/comment.component';
+import {Editor} from '../../pages/editor/editor';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 import {ResourceService} from '../../service/resource.service';
@@ -13,40 +13,27 @@ import {messages} from '../messages/messages';
 
 @Page({
   templateUrl: './build/pages/main/main.html',
-  directives: [RyCommentComponent],
   providers: [topicsService, ResourceService, messagesService],
   pipes: [RyTimeoutPipe]
 })
 export class main {
-  constructor(private _topicsService: topicsService, private _events:Events, private _nav: NavController, private _messagesService: messagesService) {
+  constructor(private _topicsService: topicsService, private _events: Events, private _nav: NavController, private _messagesService: messagesService) {
     // this.getMessageCount();
     this.listenToMessageEvents();
     this._messagesService.getMessageCount();
+    this._topicsService.getTopics(null, this.page,this.tab);
   }
-  topics: Array<any>;
+  topics: Array<Object> = [];
   //页码
   page: number = 1;
+  //主题类别
+  tab: string = 'all';
   //未读消息数量
   messageCount: number;
-  //首次加载
-  getTopics() {
-    this._topicsService.getTopics(this.page)
-      .subscribe(res => {
-      this.topics = res.data;
-      console.log(res.data);
-      this.page++;
-    });
-  }
 
   //上拉加载
   doInfinite(infiniteScroll) {
-    this._topicsService.getTopics(this.page)
-      .subscribe(res => {
-      console.log(this.topics);
-      this.topics = this.topics.concat(res.data)
-      this.page++;
-      infiniteScroll.complete();
-    });
+    this._topicsService.getTopics(infiniteScroll, this.page,this.tab);
   }
 
   //跳转话题详情页
@@ -56,27 +43,35 @@ export class main {
 
   //获取未读消息数量
   listenToMessageEvents() {
-      this._events.subscribe('message:count', (messageCount) => {
-        this.messageCount = messageCount[0];
-        // console.log(this.messageCount);
-      });
+    //消息更新事件
+    this._events.subscribe('message:count', (messageCount) => {
+      this.messageCount = messageCount[0];
+    });
+    //主题加载事件
+    this._events.subscribe('topics:load', (data) => {
+      this.topics = this.topics.concat(data[0]);
+      console.log(this.topics);
+      this.page++;
+    });
+    //主题类别改变事件
+    this._events.subscribe('topics:changeTab', (tab) => {
+      this.tab = tab[0];
+      this.topics = [];
+      this.page = 1;
+      this._topicsService.getTopics(null, this.page,this.tab);
+    });
   }
 
   // 跳转消息列表页面
-  goMessages(){
+  goMessages() {
     this._nav.push(messages);
   }
 
-  ngOnInit() { this.getTopics(); }
 
-  comment() {
+  comment(id) {
     //阻止事件继续向上传播
     event.stopPropagation();
-    let contactModal = Modal.create(RyCommentComponent);
-    this._nav.present(contactModal);
-    contactModal.onDismiss(data=> {
-      console.log(data);
-    });
+    this._nav.push(Editor,{topicId:id});
   }
 
 }

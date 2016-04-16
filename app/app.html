@@ -28,38 +28,38 @@
 
     </div>
     <ion-list>
-      <ion-item>
+      <button ion-item (click)="pushChangeTabEvent('all')">
         <ion-icon name="apps" item-left></ion-icon>
           全部
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item (click)="pushChangeTabEvent('good')">
         <ion-icon name="thumbs-up" item-left></ion-icon>
           精华
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item (click)="pushChangeTabEvent('share')">
         <ion-icon name="share" item-left></ion-icon>
           分享
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item (click)="pushChangeTabEvent('ask')">
         <ion-icon name="help-circle" item-left></ion-icon>
           问答
-      </ion-item>
-      <ion-item class="menu-item-last">
+      </button>
+      <button ion-item class="menu-item-last" (click)="pushChangeTabEvent('job')">
         <ion-icon name="briefcase" item-left></ion-icon>
           招聘
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item (click)="pushNavPage(messagesPage)">
         <ion-icon name="notifications" item-left></ion-icon>
           消息
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item>
         <ion-icon name="construct" item-left></ion-icon>
           设置
-      </ion-item>
-      <ion-item>
+      </button>
+      <button ion-item>
         <ion-icon name="information-circle" item-left></ion-icon>
           关于
-      </ion-item>
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>

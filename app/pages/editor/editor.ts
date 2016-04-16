@@ -1,14 +1,17 @@
 
-import {Page,Alert,ViewController,NavController} from 'ionic-angular';
+import {Page,NavParams,Alert,NavController} from 'ionic-angular';
 
 @Page({
   selector: 'ry-comment',
-  templateUrl: './build/component/comment/comment.component.html'
+  templateUrl: './build/pages/editor/editor.html'
 })
-export class RyCommentComponent {
+export class Editor {
   public comment:string = "";
 
-  constructor(public viewCtrl: ViewController,private _nav: NavController) { }
+  constructor(private _NavParams: NavParams,private _nav: NavController) {
+    console.log(this._NavParams.get('topicId'));
+    console.log(this._NavParams.get('replyId'));
+  }
 
   ngOnInit() {
 
@@ -69,18 +72,14 @@ export class RyCommentComponent {
   }
 
   //预览
-  preview(){
-
-  }
+  // preview(){
+  //
+  // }
 
   submit(){
     // console.log(this.comment);
     // this.comment = '23\nasdf';
-    this.dismiss();
-  }
-  dismiss() {
-    let data = this.comment;
-    this.viewCtrl.dismiss(data);
+
   }
 
 }

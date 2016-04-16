@@ -3,7 +3,7 @@ import {Page, NavParams,Modal,NavController} from 'ionic-angular';
 import {topicsService} from '../../service/topics.service';
 
 import {ResourceService} from '../../service/resource.service';
-import {RyCommentComponent} from '../../component/comment/comment.component';
+import {Editor} from '../../pages/editor/editor';
 
 @Page({
   templateUrl: './build/pages/topicInfo/topicInfo.html',
@@ -23,14 +23,10 @@ export class topicInfo {
         console.log(this.data);
     })
   }
-  comment(){
+  comment(replyId){
     //阻止事件继续向上传播
     event.stopPropagation();
-    let contactModal = Modal.create(RyCommentComponent);
-    this._nav.present(contactModal);
-    contactModal.onDismiss(data=>{
-      console.log(data);
-    });
+    this._nav.push(Editor,{topicId:this.id,replyId:replyId});
   }
 
   ngOnInit() { }
