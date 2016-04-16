@@ -34,7 +34,12 @@ export class main {
   doInfinite(infiniteScroll) {
     this._topicsService.getTopics(infiniteScroll, this.page,this.tab);
   }
-
+  //下拉刷新
+  doRefresh(refresher){
+    this.page = 1;
+    this.topics = [];
+    this._topicsService.getTopics(refresher, this.page,this.tab);
+  }
   //跳转话题详情页
   goTopicInfo(id) {
     this._nav.push(topicInfo, { id: id });

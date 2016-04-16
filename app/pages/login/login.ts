@@ -25,11 +25,8 @@ export class login {
   loginForQR(){
 // 问题是，扫描后，accesstoken如何写入input
     BarcodeScanner.scan().then((barcodeData) => {
-      this.accesstoken=barcodeData.text
-      alert("We got a barcode\n" +
-                 "Result: " + barcodeData.text + "\n" +
-                 "Format: " + barcodeData.format + "\n" +
-                 "Cancelled: " + barcodeData.cancelled);
+      this.accesstoken=barcodeData.text;
+      this.login();
       }, (err) => {
           // An error occurred
       });

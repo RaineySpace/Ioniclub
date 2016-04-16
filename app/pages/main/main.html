@@ -11,11 +11,13 @@
   </ion-buttons>
 </ion-navbar>
 <button fab-right fab-bottom fab class="new-tipic-fab" (click)="newTopic()">
-  <ion-icon name='text'></ion-icon>
+  <ion-icon name='add'></ion-icon>
 </button>
 
 <ion-content class="has-header">
-
+  <ion-refresher (refresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-card *ngFor="#topic of topics" (click)="goTopicInfo(topic.id)">
     <ion-item>

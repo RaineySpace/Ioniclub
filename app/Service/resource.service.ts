@@ -53,6 +53,12 @@ export class ResourceService {
     return this.http.post(config.apiUrlRoot + '/topic/'+topicId+'/replies', JSON.stringify({content:options.content,reply_id:options.reply_id,accesstoken:this.accesstoken}), this.interceptor());
   }
 
+  replyUps(reply_id:string){
+    // /reply/:reply_id/ups
+    return this.http.post(config.apiUrlRoot + '/reply/'+reply_id+'/ups', JSON.stringify({accesstoken:this.accesstoken}), this.interceptor());
+
+  }
+
   //获取未读消息数量
   getMessageCount(){
     let params: RequestOptions = this.interceptor()

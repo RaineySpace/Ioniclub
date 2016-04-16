@@ -1,8 +1,8 @@
 import 'es6-shim';
-import {App, Platform, IonicApp,Events} from 'ionic-angular';
+import {App, Platform, IonicApp,Events,NavController} from 'ionic-angular';
 // import {RouteConfig,ROUTER_DIRECTIVES} from 'angular2/router';
 import {StatusBar} from 'ionic-native';
-
+import {Inject} from 'angular2/core';
 import {main} from './pages/main/main';
 import {login} from './pages/login/login';
 import {messages} from './pages/messages/messages';
@@ -24,14 +24,15 @@ export class MyApp {
   rootPage: any = main;
   messagesPage: any = messages;
   user:any;
+  // @ViewChild('rootNavController') nav: NavController;
   constructor(platform: Platform,private _events: Events,private app:IonicApp,private _userService:userService) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
+
     });
     this.user = this._userService.userInitial.user;
     this.listenToLoginEvents();
   }
-
   login(){
       this.app.getComponent('leftMenu').close();
       let nav = this.app.getComponent('nav');

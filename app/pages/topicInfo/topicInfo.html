@@ -1,7 +1,14 @@
 <ion-navbar *navbar>
   <ion-title>主题内容</ion-title>
+  <!-- <ion-buttons end>
+    <button royal (click)="collection()">
+      收藏
+    </button>
+  </ion-buttons> -->
 </ion-navbar>
-
+<button fab-right fab-bottom fab class="new-tipic-fab" (click)="comment()">
+  <ion-icon name='undo'></ion-icon>
+</button>
 <ion-content class="has-header">
   <div class="topic-info" *ngIf="data">
     <div class="topic-info-head">
@@ -50,7 +57,7 @@
       </div>
       <ion-row>
         <ion-col>
-          <button primary clear small>
+          <button primary clear small (click)="ups(item.id,index)">
             <ion-icon name='thumbs-up'></ion-icon>
             <div>{{item.ups.length}} 赞</div>
           </button>

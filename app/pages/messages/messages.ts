@@ -4,7 +4,6 @@ import {messagesService} from '../../service/messages.service';
 import {ResourceService} from '../../service/resource.service';
 import {topicInfo} from '../topicInfo/topicInfo';
 
-import {Toast} from 'ionic-native';
 
 
 @Page({
@@ -30,13 +29,6 @@ export class messages{
     this._nav.push(topicInfo, { id: id });
   }
 
-  toastShow(){
-    Toast.show("I'm a toast", "5000" , "bottom").subscribe(
-      toast => {
-        console.log(toast);
-      }
-    );
-  }
 
 
 

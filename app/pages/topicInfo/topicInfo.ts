@@ -1,4 +1,4 @@
-import {Page, NavParams, Modal, NavController} from 'ionic-angular';
+import {Page, NavParams, Modal, NavController,Events} from 'ionic-angular';
 // import {ViewChild} from 'angular2/core';
 import {topicsService} from '../../service/topics.service';
 
@@ -13,9 +13,10 @@ export class topicInfo {
   public id: string;
   public data: any;
   // @ViewChild(Content) content: Content;
-  constructor(private _NavParams: NavParams, private _topicsService: topicsService, private _nav: NavController) {
+  constructor(private _NavParams: NavParams,private _events: Events, private _topicsService: topicsService, private _nav: NavController) {
     this.id = this._NavParams.get('id');
     this.getTopicInfo();
+    this.listenToTopicEvents();
   }
 
   getTopicInfo() {
@@ -46,6 +47,26 @@ export class topicInfo {
         });
 
     });
+  }
+
+  listenToTopicEvents(){
+    this._events.subscribe('topic:ups', (data) => {
+      if(data[0].action=="up"){
+        this.data.replies[data[0].index].ups.push('null');
+      }else if(data[0].action=="down"){
+        this.data.replies[data[0].index].ups.pop();
+      }
+    });
+  }
+
+
+  ups(reply_id:string,index:number){
+    console.log(reply_id);
+    this._topicsService.replyUps(reply_id,index);
+  }
+  //收藏
+  collection(){
+    console.log("收藏");
   }
 
   ngOnInit() { }
