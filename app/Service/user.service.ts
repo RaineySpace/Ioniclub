@@ -13,7 +13,7 @@ import {userModel} from '../models/user.model';
 
 @Injectable()
 export class userService {
-  storage:any;
+  storage:Storage;
   userInitial:userModel = new userModel();
 
   constructor(private _rs: ResourceService,private _events: Events) {
@@ -43,6 +43,16 @@ export class userService {
         }
       );
     });
+  }
+
+  logout(){
+    this.storage.clear();
+    this._events.publish('user:logout');
+    Toast.show("注销成功", "2000" , "bottom").subscribe(
+      toast => {
+        console.log(toast);
+      }
+    );
   }
 
 }

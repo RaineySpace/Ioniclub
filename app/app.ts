@@ -38,6 +38,10 @@ export class MyApp {
       nav.push(login);
   }
 
+  logout(){
+    this._userService.logout();
+  }
+
   listenToLoginEvents() {
     this._events.subscribe('user:login', (user) => {
       this.user = user[0];
@@ -45,6 +49,8 @@ export class MyApp {
     });
 
     this._events.subscribe('user:logout', () => {
+      this.app.getComponent('leftMenu').close();
+      this.user = null;
       this.setRootPage(main);
     });
   }

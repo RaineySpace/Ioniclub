@@ -2,10 +2,13 @@
   .item-inner{
     border: none;
   }
-  ion-item{
+  ion-item:first-child{
     // padding: 2rem 0rem 5rem 2rem;
     padding: 2rem 0rem 2rem 2rem;
 
+
+  }
+  ion-item{
     background: red;
     color:white;
   }

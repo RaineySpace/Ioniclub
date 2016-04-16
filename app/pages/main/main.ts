@@ -63,7 +63,9 @@ export class main {
 
   // 跳转消息列表页面
   goMessages() {
-    this._nav.push(messages);
+    if(window.localStorage.getItem('accesstoken')){
+      this._nav.push(messages);
+    }
   }
 
 

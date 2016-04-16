@@ -22,11 +22,17 @@ export class messagesService {
 
   //获取未读消息数量
   getMessageCount(){
-    return this._ResourceService.getMessageCount()
-          .map(res => res.json().data)
-          .subscribe(messageCount=>{
-            this._events.publish('message:count',messageCount);
-          })
+    if(window.localStorage.getItem('accesstoken')){
+      this._ResourceService.getMessageCount()
+            .map(res => res.json().data)
+            .subscribe(messageCount=>{
+              this._events.publish('message:count',messageCount);
+            })
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
   //获取未读消息列表
@@ -40,7 +46,7 @@ export class messagesService {
             .map(res=>res.json())
             .subscribe(res=>{
               this._events.publish('message:count',0);
-              
+
               console.log(res);
             },error=>{
 

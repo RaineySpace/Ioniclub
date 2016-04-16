@@ -6,9 +6,9 @@
         <ion-avatar item-left>
           <img [src]="user.avatar_url">
         </ion-avatar>
-        <button clear item-right  >
+        <!-- <button clear item-right  >
           <ion-icon name="sunny"></ion-icon>
-        </button>
+        </button> -->
         <h2>{{user.loginname}}</h2>
       </ion-item>
 
@@ -18,14 +18,19 @@
           请点击此处登陆
         </button>
 
-        <button clear light item-right  >
+        <!-- <button clear light item-right  >
           <ion-icon name="sunny"></ion-icon>
-        </button>
+        </button> -->
         <!-- <h5>请点击左侧按钮登陆</h5> -->
         <!-- <p>积分：45</p> -->
       </ion-item>
       <!-- (click)="login()" -->
-
+      <ion-item *ngIf="user">
+        <button clear light  item-right (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+          注销
+        </button>
+      </ion-item>
     </div>
     <ion-list>
       <button ion-item (click)="pushChangeTabEvent('all')">
@@ -48,11 +53,11 @@
         <ion-icon name="briefcase" item-left></ion-icon>
           招聘
       </button>
-      <button ion-item (click)="pushNavPage(messagesPage)">
+      <button ion-item (click)="pushNavPage(messagesPage)" *ngIf="user">
         <ion-icon name="notifications" item-left></ion-icon>
           消息
       </button>
-      <button ion-item>
+      <button ion-item *ngIf="user">
         <ion-icon name="construct" item-left></ion-icon>
           设置
       </button>
