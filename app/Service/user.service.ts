@@ -3,7 +3,7 @@ import { Response } from 'angular2/http';
 import {Storage, LocalStorage,Events} from 'ionic-angular';
 import {config} from '../app.config';
 import {Subject, ReplaySubject} from 'rxjs';
-
+import {Toast} from 'ionic-native';
 
 import {ResourceService} from './resource.service';
 import 'rxjs/add/operator/map';
@@ -31,8 +31,17 @@ export class userService {
     .subscribe((user:any) => {
       this.saveUserInfo(data.accesstoken,user);
       this._events.publish('user:login',user);
+      Toast.show("登陆成功", "2000" , "bottom").subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
     }, (err: any) => {
-      console.log(err);
+      Toast.show("登陆失败，请重试", "2000" , "bottom").subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
     });
   }
 
