@@ -1,16 +1,15 @@
 
-import {Page,NavParams,Alert,NavController} from 'ionic-angular';
+import {Page,Alert,NavController,ViewController,NavParams} from 'ionic-angular';
 
 @Page({
   selector: 'ry-comment',
   templateUrl: './build/pages/editor/editor.html'
 })
 export class Editor {
-  public comment:string = "";
+  private comment:string = "";
 
-  constructor(private _NavParams: NavParams,private _nav: NavController) {
-    console.log(this._NavParams.get('topicId'));
-    console.log(this._NavParams.get('replyId'));
+  constructor(params: NavParams,private _viewCtrl:ViewController,private _nav: NavController) {
+    this.comment = params.get('data');
   }
 
   ngOnInit() {
@@ -79,6 +78,12 @@ export class Editor {
   submit(){
     // console.log(this.comment);
     // this.comment = '23\nasdf';
+    // this.dismiss();
+    if(this.comment){
+      this._viewCtrl.dismiss(this.comment);
+    }else{
+      console.log("评论不能为空!!");
+    }
 
   }
 

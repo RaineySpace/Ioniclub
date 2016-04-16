@@ -3,7 +3,7 @@ import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
 
-import {Editor} from '../../pages/editor/editor';
+// import {Editor} from '../../pages/editor/editor';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 import {ResourceService} from '../../service/resource.service';
@@ -18,7 +18,6 @@ import {messages} from '../messages/messages';
 })
 export class main {
   constructor(private _topicsService: topicsService, private _events: Events, private _nav: NavController, private _messagesService: messagesService) {
-    // this.getMessageCount();
     this.listenToMessageEvents();
     this._messagesService.getMessageCount();
     this._topicsService.getTopics(null, this.page,this.tab);
@@ -68,10 +67,10 @@ export class main {
   }
 
 
-  comment(id) {
-    //阻止事件继续向上传播
-    event.stopPropagation();
-    this._nav.push(Editor,{topicId:id});
-  }
+  // comment(id) {
+  //   //阻止事件继续向上传播
+  //   event.stopPropagation();
+  //   this._nav.push(Editor,{topicId:id});
+  // }
 
 }

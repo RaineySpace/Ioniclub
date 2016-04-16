@@ -56,7 +56,7 @@
           </button>
         </ion-col>
         <ion-col>
-          <button primary clear small (click)="comment(item.id)">
+          <button primary clear small (click)="comment(item.id,item.author.loginname)">
             <ion-icon name='text'></ion-icon>
             <div>回复</div>
           </button>

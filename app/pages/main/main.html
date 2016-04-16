@@ -32,14 +32,15 @@
 
     <ion-row>
       <ion-col>
-        <button primary clear small>
-          <ion-icon name='eye'></ion-icon>
+        <button dark clear small disabled>
+          <!-- <ion-icon name='eye'></ion-icon> -->
           <div>{{topic.visit_count}} 浏览</div>
         </button>
       </ion-col>
       <ion-col>
-        <button (click)="comment(topic.id)" primary clear small>
-          <ion-icon name='text'></ion-icon>
+        <!-- (click)="comment(topic.id)" -->
+        <button  dark clear small disabled>
+          <!-- <ion-icon name='text'></ion-icon> -->
           <div>{{topic.reply_count}} 评论</div>
         </button>
       </ion-col>
