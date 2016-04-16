@@ -3,7 +3,7 @@ import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
 
-// import {Editor} from '../../pages/editor/editor';
+import {Editor} from '../../pages/editor/editor';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 import {ResourceService} from '../../service/resource.service';
@@ -68,6 +68,13 @@ export class main {
     }
   }
 
+  newTopic(){
+    let modal = Modal.create(Editor,{newTopic:true});
+    this._nav.present(modal);
+    modal.onDismiss(data=> {
+      this._topicsService.newTopic(data);
+    });
+  }
 
   // comment(id) {
   //   //阻止事件继续向上传播

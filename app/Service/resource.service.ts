@@ -15,9 +15,6 @@ export class ResourceService {
   constructor(public http: Http) {
     this.headers.append('Content-Type', 'application/json');
     this.accesstoken = window.localStorage.getItem('accesstoken');
-    // this.headers.append("Content-Type", "application/json, text/plain, */*");
-
-    // this.headers.append('jackblog', 'ionic2')
   }
   interceptor():RequestOptions{
     const opts:RequestOptions = new RequestOptions();
@@ -47,6 +44,10 @@ export class ResourceService {
 
   //提交话题
 
+  newTopic(options: any){
+    return this.http.post(config.apiUrlRoot + '/topics', JSON.stringify({content:options.content,title:options.title,tab:options.tab,accesstoken:this.accesstoken}), this.interceptor());
+  }
+
   //提交评论
   replies(options: any,topicId:string){
     return this.http.post(config.apiUrlRoot + '/topic/'+topicId+'/replies', JSON.stringify({content:options.content,reply_id:options.reply_id,accesstoken:this.accesstoken}), this.interceptor());
@@ -72,5 +73,7 @@ export class ResourceService {
   markAllMessage(){
     return this.http.post(config.apiUrlRoot + '/message/mark_all', JSON.stringify({accesstoken:this.accesstoken}), this.interceptor());
   }
+
+
 
 }

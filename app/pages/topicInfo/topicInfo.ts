@@ -25,9 +25,10 @@ export class topicInfo {
     })
   }
   comment(reply_id,loginname) {
-    let modal;
     //阻止事件继续向上传播
     event.stopPropagation();
+    let modal;
+
     // this._nav.push(Editor,{topicId:this.id,reply_id:reply_id});
     if(loginname){
       modal = Modal.create(Editor, { data: "@"+ loginname+" "});
@@ -37,7 +38,6 @@ export class topicInfo {
     this._nav.present(modal);
     modal.onDismiss(content=> {
       // console.log(data)
-
         this._topicsService.replies(this.id, content, reply_id)
           .subscribe(res=> {
           console.log("评论成功！！");

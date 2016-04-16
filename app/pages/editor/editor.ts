@@ -7,9 +7,12 @@ import {Page,Alert,NavController,ViewController,NavParams} from 'ionic-angular';
 })
 export class Editor {
   private comment:string = "";
-
+  private isNewTopic:boolean = false;
+  tab:string = "share";
+  title:string;
   constructor(params: NavParams,private _viewCtrl:ViewController,private _nav: NavController) {
     this.comment = params.get('data');
+    this.isNewTopic = params.get('newTopic');
   }
 
   ngOnInit() {
@@ -76,15 +79,22 @@ export class Editor {
   // }
 
   submit(){
-    // console.log(this.comment);
-    // this.comment = '23\nasdf';
-    // this.dismiss();
     if(this.comment){
-      this._viewCtrl.dismiss(this.comment);
+      if(this.isNewTopic){
+        if(this.title){
+          this._viewCtrl.dismiss({content:this.comment,title:this.title,tab:this.tab});
+        }else{
+          alert("请填写标题！");
+        }
+      }else{
+        this._viewCtrl.dismiss(this.comment);
+      }
     }else{
-      console.log("评论不能为空!!");
+      // console.log("请填写内容！");
+      alert("请填写内容！");
     }
 
+// {content:content,title:title,tab:tab}
   }
 
 }

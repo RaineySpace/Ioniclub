@@ -1,6 +1,9 @@
 
 <ion-navbar *navbar>
-  <ion-title>回复</ion-title>
+  <button clear nav-pop leftMenu style="z-index:3;">
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+  <ion-title class="editor-title">MarkDown编辑器</ion-title>
   <ion-buttons end>
     <button royal (click)="submit()">
       <ion-icon name="send"></ion-icon>
@@ -9,7 +12,7 @@
 </ion-navbar>
 
 <ion-toolbar class="ry-comment-toolbar">
-  <ion-buttons start>
+  <ion-buttons end>
     <button royal (click)="addBlock()">
       B
     </button>
@@ -43,7 +46,22 @@
 
 </ion-toolbar>
 <ion-content class="ry-comment">
-
+  <ion-list *ngIf="isNewTopic">
+    <ion-item>
+      <ion-label floating>标题</ion-label>
+       <!-- [(ngModel)]="accesstoken" -->
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-label floating>发布到分类：</ion-label>
+    <!-- [(ngModel)]="gaming" -->
+      <ion-select [(ngModel)]="tab">
+        <ion-option value="share">分享</ion-option>
+        <ion-option value="ask">问答</ion-option>
+        <ion-option value="job">招聘</ion-option>
+      </ion-select>
+    </ion-item>
+</ion-list>
   <textarea [(ngModel)]="comment" draggable="false"></textarea>
 
 </ion-content>

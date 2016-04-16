@@ -42,10 +42,21 @@ export class topicsService {
                     .map(res => res.json());
   }
 
+
+  // 回复
   replies(topicId:string,content:string,reply_id:string = null){
     return this._ResourceService.replies({content:content,reply_id:reply_id},topicId)
                     .map(res=>res.json().reply_id);
 
+  }
+
+  //新建主题
+  newTopic(options:any){
+    this._ResourceService.newTopic(options)
+                    .map(res=>res.json())
+                    .subscribe(data=>{
+                      this._events.publish('topics:changeTab',"all");
+                    });
   }
 
 }
