@@ -41,14 +41,17 @@ $ ionic run android
 ```
 
 # Show
+
+[Dynamic diagram loading is relatively slow,You can click here to directly access the project.](http://rainey.coding.io/ioniclub/)
+
 ## Not logged in
-![Dynamic diagram loading is relatively slow, please wait a moment](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-1.gif)
+![](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-1.gif)
 
 ## Already logged in
-![Dynamic diagram loading is relatively slow, please wait a moment](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-2.gif)
+![](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-2.gif)
 
 ## MarkDown Editor
-![Dynamic diagram loading is relatively slow, please wait a moment](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-3.gif)
+![](http://7xpp66.com1.z0.glb.clouddn.com/ioniclub-android-3.gif)
 
 # Communication
 
