@@ -6,12 +6,15 @@
   <div class="topic-info" *ngIf="data">
     <div class="topic-info-head">
       <h3>{{data.title}}</h3>
+
       <ion-card>
         <ion-item>
           <ion-avatar item-left>
             <img src={{data.author.avatar_url}}>
           </ion-avatar>
           <h2>{{data.author.loginname}}</h2>
+          <ion-badge item-right secondary *ngIf="data.top">置顶</ion-badge>
+          <ion-badge item-right secondary *ngIf="data.good">精华</ion-badge>
         </ion-item>
       </ion-card>
     </div>

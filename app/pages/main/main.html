@@ -21,11 +21,13 @@
         <img src="{{topic.author.avatar_url}}">
       </ion-avatar>
       <h2>{{topic.author.loginname}}</h2>
-      <!-- <p>{{topic.title}}</p> -->
+      <ion-badge secondary item-right *ngIf="topic.top">置顶</ion-badge>
+      <ion-badge secondary item-right *ngIf="topic.good">精华</ion-badge>
     </ion-item>
 
     <ion-card-content>
       <p>{{topic.title}}</p>
+
     </ion-card-content>
 
     <ion-row>
