@@ -2,10 +2,9 @@
 import {Page,Alert,NavController,ViewController,NavParams} from 'ionic-angular';
 
 @Page({
-  selector: 'ry-comment',
   templateUrl: './build/pages/editor/editor.html'
 })
-export class Editor {
+export class editor {
   private comment:string = "";
   private isNewTopic:boolean = false;
   tab:string = "share";

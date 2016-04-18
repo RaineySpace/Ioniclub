@@ -3,7 +3,7 @@ import {topicsService} from '../../service/topics.service';
 
 import {topicInfo} from '../topicInfo/topicInfo';
 
-import {Editor} from '../../pages/editor/editor';
+import {editor} from '../../pages/editor/editor';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 import {ResourceService} from '../../service/resource.service';
@@ -80,7 +80,7 @@ export class main {
   }
 
   newTopic(){
-    let modal = Modal.create(Editor,{newTopic:true});
+    let modal = Modal.create(editor,{newTopic:true});
     this._nav.present(modal);
     modal.onDismiss(data=> {
       this._topicsService.newTopic(data);

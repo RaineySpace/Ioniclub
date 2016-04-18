@@ -6,6 +6,7 @@ import {Inject} from 'angular2/core';
 import {main} from './pages/main/main';
 import {login} from './pages/login/login';
 import {messages} from './pages/messages/messages';
+import {about} from './pages/about/about';
 
 import {userService} from './service/user.service';
 import {ResourceService} from './service/resource.service';
@@ -23,6 +24,7 @@ import {ResourceService} from './service/resource.service';
 export class MyApp {
   rootPage: any = main;
   messagesPage: any = messages;
+  aboutPage:any = about;
   user:any;
   // @ViewChild('rootNavController') nav: NavController;
   constructor(platform: Platform,private _events: Events,private app:IonicApp,private _userService:userService) {
@@ -69,7 +71,7 @@ export class MyApp {
   pushNavPage(page){
     this.app.getComponent('leftMenu').close();
     let nav = this.app.getComponent('nav');
-    nav.push(messages);
+    nav.push(page);
   }
 
 

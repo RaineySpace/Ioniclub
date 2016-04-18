@@ -3,7 +3,7 @@ import {Page, NavParams, Modal, NavController,Events} from 'ionic-angular';
 import {topicsService} from '../../service/topics.service';
 
 import {ResourceService} from '../../service/resource.service';
-import {Editor} from '../../pages/editor/editor';
+import {editor} from '../../pages/editor/editor';
 
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 
@@ -39,9 +39,9 @@ export class topicInfo {
 
     // this._nav.push(Editor,{topicId:this.id,reply_id:reply_id});
     if(loginname){
-      modal = Modal.create(Editor, { data: "@"+ loginname+" "});
+      modal = Modal.create(editor, { data: "@"+ loginname+" "});
     }else{
-      modal = Modal.create(Editor);
+      modal = Modal.create(editor);
     }
     this._nav.present(modal);
     modal.onDismiss(content=> {
