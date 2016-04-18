@@ -3,14 +3,14 @@
     <ion-icon name="menu"></ion-icon>
   </button>
   <ion-title>Ionichina</ion-title>
-  <ion-buttons end>
+  <ion-buttons end  *ngIf="isLogin">
     <button (click)="goMessages()">
       <ion-icon name="notifications"></ion-icon>
       <ion-badge secondary>{{messageCount}}</ion-badge>
     </button>
   </ion-buttons>
 </ion-navbar>
-<button fab-right fab-bottom fab class="new-tipic-fab" (click)="newTopic()">
+<button fab-right fab-bottom fab class="new-tipic-fab" (click)="newTopic()"  *ngIf="isLogin">
   <ion-icon name='add'></ion-icon>
 </button>
 

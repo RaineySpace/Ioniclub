@@ -17,11 +17,6 @@ import {messages} from '../messages/messages';
   pipes: [RyTimeoutPipe]
 })
 export class main {
-  constructor(private _topicsService: topicsService, private _events: Events, private _nav: NavController, private _messagesService: messagesService) {
-    this.listenToMessageEvents();
-    this._messagesService.getMessageCount();
-    this._topicsService.getTopics(null, this.page,this.tab);
-  }
   topics: Array<Object> = [];
   //页码
   page: number = 1;
@@ -29,6 +24,17 @@ export class main {
   tab: string = 'all';
   //未读消息数量
   messageCount: number;
+  //登陆与否判断
+  isLogin:boolean = false;
+  constructor(private _topicsService: topicsService, private _events: Events, private _nav: NavController, private _messagesService: messagesService) {
+    this.listenToMessageEvents();
+    this._messagesService.getMessageCount();
+    this._topicsService.getTopics(null, this.page,this.tab);
+    if(window.localStorage.getItem('accesstoken')){
+      this.isLogin = true;
+    }
+  }
+
 
   //上拉加载
   doInfinite(infiniteScroll) {
@@ -68,9 +74,9 @@ export class main {
 
   // 跳转消息列表页面
   goMessages() {
-    if(window.localStorage.getItem('accesstoken')){
+
       this._nav.push(messages);
-    }
+
   }
 
   newTopic(){

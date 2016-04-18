@@ -5,18 +5,25 @@ import {topicsService} from '../../service/topics.service';
 import {ResourceService} from '../../service/resource.service';
 import {Editor} from '../../pages/editor/editor';
 
+import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
+
 @Page({
   templateUrl: './build/pages/topicInfo/topicInfo.html',
-  providers: [topicsService, ResourceService]
+  providers: [topicsService, ResourceService],
+  pipes: [RyTimeoutPipe]
 })
 export class topicInfo {
   public id: string;
   public data: any;
+  isLogin:boolean = false;
   // @ViewChild(Content) content: Content;
   constructor(private _NavParams: NavParams,private _events: Events, private _topicsService: topicsService, private _nav: NavController) {
     this.id = this._NavParams.get('id');
     this.getTopicInfo();
     this.listenToTopicEvents();
+    if(window.localStorage.getItem('accesstoken')){
+      this.isLogin = true;
+    }
   }
 
   getTopicInfo() {

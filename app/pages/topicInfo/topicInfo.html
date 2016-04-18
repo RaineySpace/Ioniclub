@@ -6,7 +6,7 @@
     </button>
   </ion-buttons> -->
 </ion-navbar>
-<button fab-right fab-bottom fab class="new-tipic-fab" (click)="comment()">
+<button fab-right fab-bottom fab class="new-tipic-fab" (click)="comment()"  *ngIf="isLogin">
   <ion-icon name='undo'></ion-icon>
 </button>
 <ion-content class="has-header">
@@ -57,22 +57,22 @@
       </div>
       <ion-row>
         <ion-col>
-          <button primary clear small (click)="ups(item.id,index)">
+          <button primary clear small (click)="ups(item.id,index)"  [attr.disabled]="isLogin">
             <ion-icon name='thumbs-up'></ion-icon>
             <div>{{item.ups.length}} 赞</div>
           </button>
         </ion-col>
         <ion-col>
-          <button primary clear small (click)="comment(item.id,item.author.loginname)">
+          <button primary clear small (click)="comment(item.id,item.author.loginname)" [attr.disabled]="isLogin">
             <ion-icon name='text'></ion-icon>
             <div>回复</div>
           </button>
         </ion-col>
-        <!-- <ion-col center text-center>
+        <ion-col center text-center>
           <ion-note>
-            11h ago
+            {{item.create_at | ryTimeout}}
           </ion-note>
-        </ion-col> -->
+        </ion-col>
       </ion-row>
     </ion-card>
   </div>
