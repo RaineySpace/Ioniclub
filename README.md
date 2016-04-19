@@ -18,10 +18,6 @@ $ git clone git@github.com:XueRainey/Ioniclub.git
 $ npm install && typings install
 
 
-# Install cordova plugin
-$ ionic plugin install
-
-
 # Start the server on localhost:8100 on development mode
 # Watches for changes, automatically recompiles files and refreshes the browser
 $ ionic serve
