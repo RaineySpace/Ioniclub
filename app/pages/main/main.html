@@ -15,8 +15,15 @@
 </button>
 
 <ion-content class="has-header">
-  <ion-refresher (refresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
+  <ion-refresher (refresh)="doRefresh($event)" pullMin="100" pullMax="250">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="刷新主题"
+
+      refreshingText="正在努力加载中~~~"
+      >
+
+    </ion-refresher-content>
   </ion-refresher>
 
   <ion-card *ngFor="#topic of topics" (click)="goTopicInfo(topic.id)">

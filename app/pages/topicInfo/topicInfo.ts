@@ -32,8 +32,16 @@ export class topicInfo {
   getTopicInfo() {
     this._topicsService.getTopicById(this.id).subscribe(res=> {
       this.data = res.data;
+      this.imgSrcReplace();
       console.log(this.data);
     })
+  }
+
+  imgSrcReplace(){
+    this.data.content = this.data.content.replace(/<img src="\/\//gi, '<img src="http://');
+    this.data.replies.map((reply)=>{
+      reply.content = reply.content.replace(/<img src="\/\//gi, '<img src="http://');
+    });
   }
 
   comment(reply_id,loginname) {
