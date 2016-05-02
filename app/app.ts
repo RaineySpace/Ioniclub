@@ -1,50 +1,50 @@
 import 'es6-shim';
-import {App, Platform, IonicApp,Events,NavController} from 'ionic-angular';
-// import {RouteConfig,ROUTER_DIRECTIVES} from 'angular2/router';
+import {App, Platform, IonicApp, Events} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {Inject} from 'angular2/core';
+
+//Page
 import {main} from './pages/main/main';
 import {login} from './pages/login/login';
 import {messages} from './pages/messages/messages';
 import {about} from './pages/about/about';
 
+//Service
 import {userService} from './service/user.service';
 import {ResourceService} from './service/resource.service';
 
 
 @App({
-  templateUrl:"./build/app.html",
+  templateUrl: "./build/app.html",
   config: {
 
   },
-  // directives:[ROUTER_DIRECTIVES]
-  providers:[userService,ResourceService]
+  providers: [userService, ResourceService]
 })
-// @RouteConfig(ROUTES)
+
 export class MyApp {
   rootPage: any = main;
   messagesPage: any = messages;
-  aboutPage:any = about;
-  user:any;
-  // @ViewChild('rootNavController') nav: NavController;
-  constructor(platform: Platform,private _events: Events,private app:IonicApp,private _userService:userService) {
+  aboutPage: any = about;
+  user: any;
+  constructor(platform: Platform , private _events: Events, private app: IonicApp, private _userService: userService) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
-
     });
     this.user = this._userService.userInitial.user;
     this.listenToLoginEvents();
   }
-  login(){
-      this.app.getComponent('leftMenu').close();
-      let nav = this.app.getComponent('nav');
-      nav.push(login);
+
+  login() {
+    this.app.getComponent('leftMenu').close();
+    let nav = this.app.getComponent('nav');
+    nav.push(login);
   }
 
-  logout(){
+  logout() {
     this._userService.logout();
   }
 
+  //监听用户登录与注销事件
   listenToLoginEvents() {
     this._events.subscribe('user:login', (user) => {
       this.user = user[0];
@@ -58,23 +58,21 @@ export class MyApp {
     });
   }
 
-  pushChangeTabEvent(tab){
-    this._events.publish('topics:changeTab',tab);
+  //监听主题类别切换事件
+  pushChangeTabEvent(tab) {
+    this._events.publish('topics:changeTab', tab);
     this.app.getComponent('leftMenu').close();
   }
 
-  setRootPage(page){
+
+  setRootPage(page) {
     let nav = this.app.getComponent('nav');
     nav.setRoot(page);
   }
 
-  pushNavPage(page){
+  pushNavPage(page) {
     this.app.getComponent('leftMenu').close();
     let nav = this.app.getComponent('nav');
     nav.push(page);
   }
-
-
-
-
 }

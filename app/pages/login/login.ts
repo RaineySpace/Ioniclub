@@ -1,8 +1,10 @@
-import {Page, NavController, Modal} from 'ionic-angular';
-import {userService} from '../../service/user.service';
-import {AbstractControl,ControlGroup,Validators,FormBuilder} from 'angular2/common';
-import {ResourceService} from '../../service/resource.service';
+import {Page, NavController} from 'ionic-angular';
 import {BarcodeScanner} from 'ionic-native';
+
+//Service
+import {userService} from '../../service/user.service';
+import {ResourceService} from '../../service/resource.service';
+
 @Page({
   templateUrl: './build/pages/login/login.html',
   providers: [userService,ResourceService]
@@ -14,21 +16,18 @@ export class login {
   constructor(private _userService:userService,private _nav:NavController) {
   }
 
-
   //通过手动填写accesstoken登陆
   login(){
     this._userService.login({accesstoken:this.accesstoken});
   }
 
-
   //通过扫描二维码登陆
   loginForQR(){
-// 问题是，扫描后，accesstoken如何写入input
     BarcodeScanner.scan().then((barcodeData) => {
       this.accesstoken=barcodeData.text;
       this.login();
       }, (err) => {
-          // An error occurred
+        alert("调用本地相机失败！");
       });
   }
 

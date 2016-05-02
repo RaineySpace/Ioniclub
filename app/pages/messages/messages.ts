@@ -1,8 +1,11 @@
 import {Page,NavController,Events} from 'ionic-angular';
 
+//Page
+import {topicInfo} from '../topicInfo/topicInfo';
+
+//Service
 import {messagesService} from '../../service/messages.service';
 import {ResourceService} from '../../service/resource.service';
-import {topicInfo} from '../topicInfo/topicInfo';
 
 
 

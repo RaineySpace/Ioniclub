@@ -1,10 +1,5 @@
 <ion-navbar *navbar>
   <ion-title>Ionichina</ion-title>
-  <!-- <ion-buttons end>
-    <button (click)="toastShow()">
-      <ion-icon name="done-all"></ion-icon>
-    </button>
-  </ion-buttons> -->
 </ion-navbar>
 <ion-content>
   <ion-toolbar>
@@ -17,7 +12,6 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <!-- <h6 class="messages-tag" *ngIf="messages.hasnot_read_messages.length">未读信息：</h6> -->
   <div [ngSwitch]="tag">
     <div *ngSwitchWhen="'hasnot_read_messages'">
       <ion-card *ngFor="#message of messages.hasnot_read_messages" (click)="goTopicInfo(message.topic.id)">

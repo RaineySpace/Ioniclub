@@ -1,10 +1,13 @@
 import {Page, NavParams, Modal, NavController,Events} from 'ionic-angular';
-// import {ViewChild} from 'angular2/core';
-import {topicsService} from '../../service/topics.service';
 
-import {ResourceService} from '../../service/resource.service';
+//Page
 import {editor} from '../../pages/editor/editor';
 
+//Service
+import {topicsService} from '../../service/topics.service';
+import {ResourceService} from '../../service/resource.service';
+
+//Pipe
 import {RyTimeoutPipe} from '../../pipe/timeout.pipe';
 
 @Page({
@@ -16,7 +19,7 @@ export class topicInfo {
   public id: string;
   public data: any;
   isLogin:boolean = false;
-  // @ViewChild(Content) content: Content;
+
   constructor(private _NavParams: NavParams,private _events: Events, private _topicsService: topicsService, private _nav: NavController) {
     this.id = this._NavParams.get('id');
     this.getTopicInfo();
@@ -32,12 +35,11 @@ export class topicInfo {
       console.log(this.data);
     })
   }
+
   comment(reply_id,loginname) {
     //阻止事件继续向上传播
     event.stopPropagation();
     let modal;
-
-    // this._nav.push(Editor,{topicId:this.id,reply_id:reply_id});
     if(loginname){
       modal = Modal.create(editor, { data: "@"+ loginname+" "});
     }else{
@@ -45,7 +47,6 @@ export class topicInfo {
     }
     this._nav.present(modal);
     modal.onDismiss(content=> {
-      // console.log(data)
         this._topicsService.replies(this.id, content, reply_id)
           .subscribe(res=> {
           console.log("评论成功！！");

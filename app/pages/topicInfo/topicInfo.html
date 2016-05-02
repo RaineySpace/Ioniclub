@@ -1,10 +1,5 @@
 <ion-navbar *navbar>
   <ion-title>主题内容</ion-title>
-  <!-- <ion-buttons end>
-    <button royal (click)="collection()">
-      收藏
-    </button>
-  </ion-buttons> -->
 </ion-navbar>
 <button fab-right fab-bottom fab class="new-tipic-fab" (click)="comment()"  *ngIf="isLogin">
   <ion-icon name='undo'></ion-icon>
@@ -29,17 +24,13 @@
     <div [innerHTML]="data.content" class="topic-info-content" *ngIf="data">
 
     </div>
-    <div class="">
       <ion-item>
-        <!-- <ion-avatar item-left >
-          <img src={{data.author.avatar_url}}>
-        </ion-avatar> -->
         <button item-right clear (click)="comment()">
           <ion-icon name="undo"></ion-icon>
           评论
         </button>
       </ion-item>
-    </div>
+
   </div>
 
   <div class="topic-replies" *ngIf="data">

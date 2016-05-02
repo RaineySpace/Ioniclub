@@ -49,12 +49,10 @@
   <ion-list *ngIf="isNewTopic">
     <ion-item>
       <ion-label floating>标题</ion-label>
-       <!-- [(ngModel)]="accesstoken" -->
       <ion-input type="text" [(ngModel)]="title"></ion-input>
     </ion-item>
   <ion-item>
     <ion-label floating>发布到分类：</ion-label>
-    <!-- [(ngModel)]="gaming" -->
       <ion-select [(ngModel)]="tab">
         <ion-option value="share">分享</ion-option>
         <ion-option value="ask">问答</ion-option>
@@ -65,13 +63,3 @@
   <textarea [(ngModel)]="comment" draggable="false"></textarea>
 
 </ion-content>
-
-<!-- <ion-toolbar position="bottom">
-  <p>Ash, Misty, Brock</p>
-  <ion-buttons end>
-    <button royal>
-      Send
-      <ion-icon name="send"></ion-icon>
-    </button>
-  </ion-buttons>
-</ion-toolbar> -->

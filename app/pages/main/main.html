@@ -37,20 +37,16 @@
     <ion-row>
       <ion-col>
         <button dark clear small disabled>
-          <!-- <ion-icon name='eye'></ion-icon> -->
           <div>{{topic.visit_count}} 浏览</div>
         </button>
       </ion-col>
       <ion-col>
-        <!-- (click)="comment(topic.id)" -->
         <button  dark clear small disabled>
-          <!-- <ion-icon name='text'></ion-icon> -->
           <div>{{topic.reply_count}} 评论</div>
         </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          <!-- 11h ago -->
           {{topic.last_reply_at | ryTimeout}}
         </ion-note>
       </ion-col>

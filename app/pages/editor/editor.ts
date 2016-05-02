@@ -7,7 +7,7 @@ import {Page,Alert,NavController,ViewController,NavParams} from 'ionic-angular';
 export class editor {
   private comment:string = "";
   private isNewTopic:boolean = false;
-  tab:string = "share";
+  tab:string = "share";//主题类别
   title:string;
   constructor(params: NavParams,private _viewCtrl:ViewController,private _nav: NavController) {
     this.comment = params.get('data');
@@ -45,7 +45,6 @@ export class editor {
         },
         {
           name: 'url',
-          // placeholder: '连接',
           value:'http://',
           type: 'url'
         }
@@ -72,11 +71,6 @@ export class editor {
     this.comment+="\n![image](http://resource)"
   }
 
-  //预览
-  // preview(){
-  //
-  // }
-
   submit(){
     if(this.comment){
       if(this.isNewTopic){
@@ -89,11 +83,9 @@ export class editor {
         this._viewCtrl.dismiss(this.comment);
       }
     }else{
-      // console.log("请填写内容！");
       alert("请填写内容！");
     }
 
-// {content:content,title:title,tab:tab}
   }
 
 }

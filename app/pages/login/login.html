@@ -1,24 +1,12 @@
 <ion-navbar *navbar>
-  <!-- <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button> -->
   <ion-title>登陆</ion-title>
-  <!-- <ion-buttons end>
-    <button>
-      <ion-icon name="notifications"></ion-icon>
-      <ion-badge secondary>22</ion-badge>
-
-    </button>
-  </ion-buttons> -->
 </ion-navbar>
 
 
 <ion-content class="has-header">
-  <!-- <form class="signin-form form-horizontal" [ngFormModel]="signinForm" (ngSubmit)="onSubmit(signinForm.value)"> -->
     <ion-list>
       <ion-item>
         <ion-label floating>Access Token</ion-label>
-        <!-- <ion-input type="text" [ngFormControl]="accesstoken"></ion-input> -->
         <ion-input type="password" [(ngModel)]="accesstoken"></ion-input>
       </ion-item>
     </ion-list>
@@ -34,10 +22,4 @@
         </button>
       </ion-col>
     </ion-row>
-  <!-- </form> -->
-
-
-
-
-
 </ion-content>

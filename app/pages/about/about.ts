@@ -8,11 +8,7 @@ export class about {
   constructor(params: NavParams,private _viewCtrl:ViewController,private _nav: NavController) {
 
   }
-
   ngOnInit() {
 
   }
-
-
-
 }
