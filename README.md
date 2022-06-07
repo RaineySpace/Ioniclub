@@ -59,7 +59,6 @@ $ ionic run android
 # Author
 
 - github: [XueRainey](https://github.com/XueRainey)
-- Email: xuebing_orz@icloud.com
 - [Personal blog](http://rainey.space)
 
 # License
